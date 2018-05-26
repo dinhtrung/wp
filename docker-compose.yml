@@ -1,0 +1,35 @@
+version: '2'
+services:
+  db:
+    image: mariadb:latest
+    environment:
+      - MYSQL_DATABASE=wp
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+  php:
+    depends_on:
+      - db
+    image: nguyendinhtrung141/php:fpm-alpine
+    volumes:
+      - "./wordpress:/var/www/html"
+      - "./php.ini:/usr/local/etc/php/conf.d/php.ini"
+    links:
+      - db
+  nginx:
+    depends_on:
+      - php
+    ports:
+      - "28000:80"
+    image: nguyendinhtrung141/docker-nginx
+    volumes:
+      - "./wordpress:/var/www/html:ro"
+      - "./nginx:/etc/nginx/conf.d"
+    links:
+      - php
+  crawler:
+    image: openjdk:8-jre-alpine
+    depends_on:
+      - db
+    volumes:
+      - ./crawler:/srv
+    command: tail -f /srv/application.properties
+    

@@ -84,26 +84,14 @@ define('FS_METHOD', 'direct');
 define('WP_MAX_MEMORY_LIMIT', '256M' );
 
 switch ($domain = $_SERVER['SERVER_NAME']){
-        case 'senvoigrohe.com.vn':
-        case 'www.senvoigrohe.com.vn':
-        case 'cdn.senvoigrohe.com.vn':
-                define('DB_NAME', 'wp_senvoigrohe');
-                define('DB_USER', 'senvoigrohe');
-                define('DB_PASSWORD', 'uC6FJuWvS30i');
-                break;
-        case 'nuockhoangmylam.com':
-        case 'www.nuockhoangmylam.com':
-        case 'cdn.nuockhoangmylam.com':
-                define('DB_NAME', 'wp_nuockhoangmylam');
-                define('DB_USER', 'nuockhoangmylam');
-                define('DB_PASSWORD', 'G58ANlN38I19');
-                break;
+        case 'product.site':
+          break;
         default:
-		define('DB_NAME', 'wp');
-                define('DB_USER', 'root');
-                define('DB_PASSWORD', '');
-		define('UPLOADS', 'uploads');
-                break;
+          define('DB_NAME', 'wp');
+          define('DB_USER', 'root');
+          define('DB_PASSWORD', '');
+          define('UPLOADS', 'uploads');
+          break;
 }
 
 $proto = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') ? 'https' : 'http';

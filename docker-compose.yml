@@ -25,11 +25,3 @@ services:
       - "./nginx:/etc/nginx/conf.d"
     links:
       - php
-  crawler:
-    image: openjdk:8-jre-alpine
-    depends_on:
-      - db
-    volumes:
-      - ./crawler:/srv
-    command: tail -f /srv/application.properties
-    
